@@ -2,8 +2,15 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }:
+let
+  pkgsUnstable = import inputs.nixpkgs-unstable {
+    system = pkgs.stdenv.hostPlatform.system;
+    config.allowUnfree = true;
+  };
+in
 {
   home-manager.users."${config.system.primaryUser}" = { config, ... }: {
     programs.neovim = {
@@ -25,7 +32,7 @@
         direnv
 
         # Claude Code
-        claude-code
+        pkgsUnstable.claude-code
 
         markdownlint-cli2
 

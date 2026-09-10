@@ -66,8 +66,8 @@ in
             "$XDG_RUNTIME_DIR/${cfg.socket}";
       in
       {
-        bash = ''export SSH_AUTH_SOCK="${socketPath}"'';
-        fish = ''set -x SSH_AUTH_SOCK "${socketPath}"'';
+        bash = ''[ -n "''${AI_SANDBOX_ACTIVE-}" ] || export SSH_AUTH_SOCK="${socketPath}"'';
+        fish = ''set -q AI_SANDBOX_ACTIVE; or set -x SSH_AUTH_SOCK "${socketPath}"'';
         nushell = "$env.SSH_AUTH_SOCK = ${
           if pkgs.stdenv.isDarwin then
             ''$"(${lib.getExe pkgs.getconf} DARWIN_USER_TEMP_DIR)/${cfg.socket}"''
