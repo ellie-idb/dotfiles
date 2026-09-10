@@ -161,7 +161,6 @@
         settings = {
           domain = "sea.t4t.net";
           interface = [
-            "uplink"
             "br-switch"
           ];
           expand-hosts = true;
@@ -206,6 +205,10 @@
           dhcp-host = [
             "38:05:25:37:2b:d0,23.190.72.45" # peer2peer LACP bond
             "38:05:25:37:2b:d0,[2620:C2:2000::10]" # peer2peer LACP bond
+            "0c:42:a1:71:61:06,23.190.72.73" # pawpatch LACP bond
+            "0c:42:a1:71:61:06,[2620:C2:2000::16d]" # pawpatch LACP bond
+            "0c:42:a1:71:6a:16,23.190.72.231" # psychoboost LACP bond
+            "0c:42:a1:71:6a:16,[2620:C2:2000::ea]" # psychoboost LACP bond
           ];
         };
       };
